@@ -10,7 +10,7 @@ This project was bootstrapped with [WPF](https://github.com/dotnet/wpf) and [dot
 
 ## Init example
 
-You need to init requires 6 parameters, which are all string type:
+You need to init requires 5 parameters, which are all string type:
 
 | Name         | Description                                                                                             | File                 |
 | ------------ | ------------------------------------------------------------------------------------------------------- | -------------------- |
