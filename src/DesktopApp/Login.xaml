@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
         mc:Ignorable="d"
-        Title="Login" Height="850" Width="450">
+        Title="Login" 
+        Height="850" 
+        Width="450"
+        ResizeMode="NoResize">
     <Grid>
         <wv2:WebView2 Name="WebView" />
     </Grid>
