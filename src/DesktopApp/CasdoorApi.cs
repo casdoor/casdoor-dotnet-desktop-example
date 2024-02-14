@@ -13,14 +13,14 @@ namespace DesktopApp
 
         public CasdoorApi(string baseAddress) => _client = new RestClient(baseAddress);
 
-        public async Task<string?> RequestToken(string clientId, string clientSecret, string code)
+        public async Task<string?> RequestToken(string clientId, string code)
         {
             var body = new 
             { 
                 grant_type = "authorization_code", 
-                client_id = clientId, 
-                client_secret = clientSecret, 
-                code
+                client_id = clientId,
+                code_verifier = CasdoorVariables.ChallengeCode,
+                code,
             };
 
             var req = new RestRequest(_requestTokenUrl).AddJsonBody(body);
@@ -31,7 +31,7 @@ namespace DesktopApp
 
         public async Task<UserDto?> GetUserInfo(string token)
         {
-            var req = new RestRequest(_getUserInfoUrl).AddQueryParameter("accessToken", token);
+        var req = new RestRequest(_getUserInfoUrl).AddQueryParameter("accessToken", token);
 
             return await _client.GetAsync<UserDto>(req);
         }

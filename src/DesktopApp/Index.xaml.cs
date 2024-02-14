@@ -41,7 +41,6 @@ namespace DesktopApp
 
             var token = await _casdoorApi.RequestToken(
                 CasdoorVariables.ClientId,
-                CasdoorVariables.ClientSecret,
                 _authCode
             );
 
