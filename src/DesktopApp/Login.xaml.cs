@@ -41,7 +41,8 @@ namespace DesktopApp
 
         private void WebView_CoreWebView2InitializationCompleted(object? sender, CoreWebView2InitializationCompletedEventArgs e)
         {
-            WebView.CoreWebView2.CookieManager.DeleteCookiesWithDomainAndPath("casdoor_session_id", CasdoorVariables.Domain.Replace("https://", "").Replace("http://", "").Replace("/",""), "/");
+            var uri = new Uri(CasdoorVariables.Domain);
+            WebView.CoreWebView2.CookieManager.DeleteCookiesWithDomainAndPath("casdoor_session_id", uri.Host, "/");
             WebView.CoreWebView2.NewWindowRequested += CoreWebView2_NewWindowRequested;
         }
 
