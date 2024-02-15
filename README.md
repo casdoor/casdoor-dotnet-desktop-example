@@ -35,4 +35,4 @@ If you don't set these parameters, this project will use the [Casdoor online dem
 
 ### Demo
 
-[demo](demo.gif)
+![demo](demo.gif)
