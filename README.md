@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [WPF](https://github.com/dotnet/wpf) and [dotnet](https://www.dot.net/).
 
+![demo](demo.gif)
+
 ## Prerequisites
 
 [dotnet6 sdk](https://dotnet.microsoft.com/en-us/download)
