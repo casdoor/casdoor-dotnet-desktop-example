@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [WPF](https://github.com/dotnet/wpf) and [dotnet](https://www.dot.net/).
 
+![demo](demo.gif)
+
 ## Prerequisites
 
 [dotnet6 sdk](https://dotnet.microsoft.com/en-us/download)
@@ -32,7 +34,3 @@ If you don't set these parameters, this project will use the [Casdoor online dem
 
 1. cd src/DesktopApp
 2. dotnet run
-
-### Demo
-
-![demo](demo.gif)
