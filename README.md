@@ -32,3 +32,7 @@ If you don't set these parameters, this project will use the [Casdoor online dem
 
 1. cd src/DesktopApp
 2. dotnet run
+
+### Demo
+
+[demo](demo.gif)
