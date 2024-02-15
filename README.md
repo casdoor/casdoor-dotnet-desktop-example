@@ -18,7 +18,6 @@ You need to init requires 5 parameters, which are all string type:
 | ClientId      | The Client ID of your Casdoor application                                                               | `CasdoorVariables.cs` |
 | AppName       | The name of your Casdoor application                                                                    | `CasdoorVariables.cs` |
 | CallbackUrl   | The path of the callback URL for your Casdoor application, will be `casdoor://callback` if not provided | `CasdoorVariables.cs` |
-| ChallengeCode | Random string for PKCE challende code                                                                   | `CasdoorVariables.cs` |
 
 If you don't set these parameters, this project will use the [Casdoor online demo](https://door.casdoor.com) as the defult Casdoor server and use the [Casnode](https://door.casdoor.com/applications/app-casnode) as the default Casdoor application.
 

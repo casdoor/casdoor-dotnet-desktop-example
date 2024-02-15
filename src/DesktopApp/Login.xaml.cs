@@ -10,13 +10,18 @@ namespace DesktopApp
 {
     public class CodeReceivedEventArgs : EventArgs
     {
-        public CodeReceivedEventArgs(string code) => Code = code;
+        public CodeReceivedEventArgs(string code, string codeVerifier) { 
+            Code = code;
+            CodeVerifier = codeVerifier;
+        }
 
         public string Code { get; }
+        public string CodeVerifier { get; }
     }
 
     public partial class Login : Window
     {
+        private string codeVerifier;
         public Login()
         {
             InitializeComponent();
@@ -36,7 +41,7 @@ namespace DesktopApp
 
         private void WebView_CoreWebView2InitializationCompleted(object? sender, CoreWebView2InitializationCompletedEventArgs e)
         {
-            WebView.CoreWebView2.CookieManager.DeleteCookiesWithDomainAndPath("casdoor_session_id", "door.casdoor.com", "/");
+            WebView.CoreWebView2.CookieManager.DeleteCookiesWithDomainAndPath("casdoor_session_id", CasdoorVariables.Domain.Replace("https://", "").Replace("http://", "").Replace("/",""), "/");
             WebView.CoreWebView2.NewWindowRequested += CoreWebView2_NewWindowRequested;
         }
 
@@ -51,7 +56,7 @@ namespace DesktopApp
             if (e.Uri.StartsWith("casdoor://", StringComparison.OrdinalIgnoreCase))
             {
                 code = GetCodeFromUrl(e.Uri);
-                CodeReceived?.Invoke(this, new CodeReceivedEventArgs(code));
+                CodeReceived?.Invoke(this, new CodeReceivedEventArgs(code, codeVerifier));
             }
 
             deferral.Complete();
@@ -63,8 +68,10 @@ namespace DesktopApp
 
         private string GetLoginUrl()
         {
+            codeVerifier = DateTimeOffset.Now.ToUnixTimeSeconds().ToString();
+
             var sha256Instance = SHA256.Create();
-            byte[] bytes = Encoding.Default.GetBytes(CasdoorVariables.ChallengeCode);
+            byte[] bytes = Encoding.Default.GetBytes(codeVerifier);
             byte[] chanllengeCodeEncoded = sha256Instance.ComputeHash(bytes);
             string chanllengeCodeBase64Encoded = Convert.ToBase64String(chanllengeCodeEncoded).Replace("+", "-").Replace("/", "_").Replace("=",""); 
             

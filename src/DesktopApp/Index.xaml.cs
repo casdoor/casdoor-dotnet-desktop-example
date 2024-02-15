@@ -6,6 +6,7 @@ namespace DesktopApp
     {
         private readonly CasdoorApi _casdoorApi;
         private string? _authCode;
+        private string? _authCodeVerifier;
 
         public Index()
         {
@@ -34,6 +35,7 @@ namespace DesktopApp
         private async void Login_CodeReceived(object? sender, CodeReceivedEventArgs e)
         {
             _authCode = e.Code;
+            _authCodeVerifier = e.CodeVerifier;
 
             UserProfilePnl.Visibility = Visibility.Visible;
             LoginPnl.Visibility = Visibility.Collapsed;
@@ -41,7 +43,8 @@ namespace DesktopApp
 
             var token = await _casdoorApi.RequestToken(
                 CasdoorVariables.ClientId,
-                _authCode
+                _authCode,
+                _authCodeVerifier
             );
 
             // Assume request token and get user process is in happy path..

@@ -13,13 +13,13 @@ namespace DesktopApp
 
         public CasdoorApi(string baseAddress) => _client = new RestClient(baseAddress);
 
-        public async Task<string?> RequestToken(string clientId, string code)
+        public async Task<string?> RequestToken(string clientId, string code, string codeVerifier)
         {
             var body = new 
             { 
                 grant_type = "authorization_code", 
                 client_id = clientId,
-                code_verifier = CasdoorVariables.ChallengeCode,
+                code_verifier = codeVerifier,
                 code,
             };
 
