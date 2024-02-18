@@ -10,21 +10,20 @@ namespace DesktopApp
         public const string AppName = "app-casnode";
         public const string ClientId = "014ae4bd048734ca2dea";
         public const string CallbackUrl = "casdoor://callback";
+        public const string OrganizationName = "casbin";
+        public const string ApplicationType = "webapp";
+        public const string Scope = "profile";
+        public const bool RequireHttpsMetadata = false;
         public static CasdoorOptions options = new CasdoorOptions
         {
             Endpoint = Domain,
-            OrganizationName = "casbin",
+            OrganizationName = OrganizationName,
             ApplicationName = AppName,
-            ApplicationType = "webapp", // webapp, webapi or native
+            ApplicationType = ApplicationType,
             ClientId = ClientId,
-
-            // Optional: The callback path that the client will be redirected to
-            // after the user has authenticated. default is "/casdoor/signin-callback"
             CallbackPath = CallbackUrl,
-            // Optional: Whether require https for casdoor endpoint
-            RequireHttpsMetadata = false,
-            // Optional: The scopes that the client is requesting.
-            Scope = "profile"
+            RequireHttpsMetadata = RequireHttpsMetadata,
+            Scope = Scope
         };
         public static CasdoorClient casdoorClient = new CasdoorClient(new HttpClient(), options);
     }
