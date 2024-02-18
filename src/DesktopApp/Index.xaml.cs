@@ -4,15 +4,12 @@ namespace DesktopApp
 {
     public partial class Index : Window
     {
-        private readonly CasdoorApi _casdoorApi;
         private string? _authCode;
         private string? _authCodeVerifier;
 
         public Index()
         {
             InitializeComponent();
-
-            _casdoorApi = new CasdoorApi(CasdoorVariables.Domain);
         }
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
@@ -41,14 +38,12 @@ namespace DesktopApp
             LoginPnl.Visibility = Visibility.Collapsed;
             Username.Text = "Loading...";
 
-            var token = await _casdoorApi.RequestToken(
-                CasdoorVariables.ClientId,
-                _authCode,
-                _authCodeVerifier
-            );
+            var token = await CasdoorVariables.casdoorClient.RequestAuthorizationCodeTokenAsync(_authCode, CasdoorVariables.ClientId, _authCodeVerifier);
+
 
             // Assume request token and get user process is in happy path..
-            var user = await _casdoorApi.GetUserInfo(token!);
+            //var user = await _casdoorApi.GetUserInfo(token!);
+            var user = await CasdoorVariables.casdoorClient.UserInfo(token.AccessToken!);
             Username.Text = user!.Name;
         }
     }

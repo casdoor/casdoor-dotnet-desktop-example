@@ -35,7 +35,8 @@ namespace DesktopApp
         {
             WebView.CoreWebView2InitializationCompleted += WebView_CoreWebView2InitializationCompleted;
 
-            var loginUrl = GetLoginUrl();
+            codeVerifier = DateTimeOffset.Now.ToUnixTimeSeconds().ToString();
+            var loginUrl = CasdoorVariables.casdoorClient.GetSigninUrl(codeVerifier, true);
             WebView.Source = new Uri(loginUrl);
         }
 
@@ -66,18 +67,5 @@ namespace DesktopApp
             if (code != null)
                 Close();
         }
-
-        private string GetLoginUrl()
-        {
-            codeVerifier = DateTimeOffset.Now.ToUnixTimeSeconds().ToString();
-
-            var sha256Instance = SHA256.Create();
-            byte[] bytes = Encoding.Default.GetBytes(codeVerifier);
-            byte[] chanllengeCodeEncoded = sha256Instance.ComputeHash(bytes);
-            string chanllengeCodeBase64Encoded = Convert.ToBase64String(chanllengeCodeEncoded).Replace("+", "-").Replace("/", "_").Replace("=",""); 
-            
-            return $"{CasdoorVariables.Domain}/login/oauth/authorize?client_id={CasdoorVariables.ClientId}&response_type=code&redirect_uri={CasdoorVariables.CallbackUrl}&scope=profile&state={CasdoorVariables.AppName}&noRedirect=true&code_challenge={chanllengeCodeBase64Encoded}&code_challenge_method=S256";
-        }
-           
     }
 }

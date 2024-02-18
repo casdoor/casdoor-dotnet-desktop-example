@@ -14,12 +14,16 @@ This project was bootstrapped with [WPF](https://github.com/dotnet/wpf) and [dot
 
 You need to init requires 5 parameters, which are all string type:
 
-| Name          | Description                                                                                             | File                  |
-| ------------  | ------------------------------------------------------------------------------------------------------- | --------------------- |
-| Domain        | Your Casdoor server host/domain                                                                         | `CasdoorVariables.cs` |
-| ClientId      | The Client ID of your Casdoor application                                                               | `CasdoorVariables.cs` |
-| AppName       | The name of your Casdoor application                                                                    | `CasdoorVariables.cs` |
-| CallbackUrl   | The path of the callback URL for your Casdoor application, will be `casdoor://callback` if not provided | `CasdoorVariables.cs` |
+| Name                  | Description                                                                                             | File                  |
+| ------------          | ------------------------------------------------------------------------------------------------------- | --------------------- |
+| Domain                | Your Casdoor server host/domain                                                                         | `CasdoorVariables.cs` |
+| ClientId              | The Client ID of your Casdoor application                                                               | `CasdoorVariables.cs` |
+| AppName               | The name of your Casdoor application                                                                    | `CasdoorVariables.cs` |
+| CallbackUrl           | The path of the callback URL for your Casdoor application, will be `casdoor://callback` if not provided | `CasdoorVariables.cs` |
+| OrganizationName      | The organizatio name of your Casdoor application                                                        | `CasdoorVariables.cs` |
+| ApplicationType       | Webapp, webapi or native                                                                                | `CasdoorVariables.cs` |
+| Scope                 | The scopes that the client is requesting                                                                | `CasdoorVariables.cs` |
+| RequireHttpsMetadata  | Whether require https for casdoor endpoint                                                              | `CasdoorVariables.cs` |
 
 If you don't set these parameters, this project will use the [Casdoor online demo](https://door.casdoor.com) as the defult Casdoor server and use the [Casnode](https://door.casdoor.com/applications/app-casnode) as the default Casdoor application.
 
