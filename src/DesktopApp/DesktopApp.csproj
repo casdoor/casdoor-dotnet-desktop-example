@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Casdoor.Client" Version="1.15.0" />
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1264.42" />
     <PackageReference Include="RestSharp" Version="108.0.1" />
   </ItemGroup>
